@@ -1,0 +1,30 @@
+@import "bootstrap";
+.center{
+    text-align: center;
+}
+.jumbotron{
+    background-image:asset-url('myrecipes3.jpg');
+    background-size: cover;
+    height: 200px;
+    width: auto;
+    text-align: center;
+    font-size:1em;
+    color:#fff;
+    }
+
+#logo{
+    float : left;
+    font-size:1.7em;
+    color: #fff;
+    text-transform:uppercase;
+    letter-spacing: -1px;
+    font-weight:bold;
+}
+.btn{
+    text-decoration: solid;
+    -webkit-text-fill-color:white;
+}
+.card {
+    border: none !important;
+    outline-color: #fff;
+  }
