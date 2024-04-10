@@ -25,6 +25,58 @@
     -webkit-text-fill-color:white;
 }
 .card {
-    border: none !important;
-    outline-color: #fff;
+    // border: none !important;
+    outline-color:black;
+    background-color: #f0f0f0; /* Set the background color for the card */
+  border-radius: 10px; /* Optional: Add rounded corners to the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  .description {
+    margin-top: 0;
+  }
+  .well a{
+    color: red;
+    text-decoration: none;
+  }
+  .time {
+    display: flex;
+  justify-content: flex-end;
+  }
+  .chef_info{
+    margin-top:10px ;
+  }
+  .recipe-actions {
+    padding-top: 5px;
+    a {
+      color: #fff;
+    }
+  }
+  .nav-item {
+    margin-right: 20px; /* Adjualue to your desired spacing */
+  }
+  .centered {
+    margin: 0 auto;
+    width: 50%; /* Adjust width as needed */
+}
+.control-label{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.fixed-div {
+  position: absolute;
+  top: 100px; /* Adjust top position */
+  left: 50%; /* Adjust left position */
+  transform: translateX(-50%);
+}
+.listing {
+  list-style: none;
+  padding-left: 500;
+  margin: 0 auto;
+    left: 50%;
+}
+
+.chef-title {
+  color: #073B15;
+  font-weight: bold;
+  font-size: 1.25em;
+}
