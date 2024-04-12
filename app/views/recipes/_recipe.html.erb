@@ -15,8 +15,8 @@
         <p>Ingredients: <%= render recipe.ingredients %></p>
       <% end %> -->
       <p>
-        <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.name.capitalize %> | 
-        <%= pluralize(recipe.comments.count, 'Comment') %></small></span>
+        <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.name.capitalize %> <br> 
+        <%= pluralize(recipe.comments.count, 'Comment') %> |  Rating : <%= recipe.comments.average(:rating).to_i%></small></span>
       </p>
       <% if logged_in? && (current_chef == recipe.chef) %>
         <div class="recipe-actions">

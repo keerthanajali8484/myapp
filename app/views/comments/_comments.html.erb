@@ -1,12 +1,14 @@
-<div class="comment">
-<div align="center">
-<%= will_paginate comments %>
-</div>
-<% comments.each do |comment| %>
-<%= render(partial: 'comments/comment', object: comment) %>
-<% end %>
+<div class="comment col-md-12"style="margin: 0 auto; width: 152%;">
+    <div style="margin: 0 auto; width: 20%;">
+    <p><strong >Overall Rating : <%= comments.average(:rating).to_i%></strong></p>
+    </div>
 
-<div align="center">
-<%= will_paginate comments %>
-</div>
+    <%= will_paginate comments %>
+    <% comments.each do |comment| %>
+    <%= render(partial: 'comments/comment', object: comment) %>
+    <% end %>
+
+    <div align="center">
+    <%= will_paginate comments %>
+    </div>
 </div>

@@ -45,7 +45,7 @@
   <div class="row">
     <div>
     <br>
-    <h4><strong>Comments: </strong></h4>
+    <h4><strong>Comments </strong></h4>
       
       <%= form_for([@recipe, @comment], :html => {class: "form-horizontal", 
                                                 role: "form"}) do |f| %>
@@ -55,13 +55,20 @@
           <div class="col-md-12 comment-description">
             <%= f.text_area :description, rows: 8, class: "form-control", 
                                       placeholder: "Enter Comment Here" %>
+            
           </div>
+          <br>
+          <h4><strong>Rating </strong></h4>
+          <div class="col-md-12 comment-description">
+            <%= f.text_area :rating, rows: 1, class: "form-control", 
+                                      placeholder: "Enter rating 1 to 5" %>
+          </div>
+          
         </div>
         <br>
         <div class="form-group">
-          <div class="col-md-offset-2 col-md-10">
-            <%= f.submit "Submit Comment", 
-                              class: "btn btn-danger" %>
+          <div class="col-md-offset-2 col-md-10 centered"style="margin: 0 auto; width: 20%;">
+            <%= f.submit "Submit",class: "btn btn-danger" %>
           </div>
         </div>
       <% end %>
