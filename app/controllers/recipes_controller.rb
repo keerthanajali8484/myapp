@@ -1,10 +1,13 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update] 
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   def index
-    @recipes = Recipe.all # Or any other logic to fetch the recipes
+   @recipes = Recipe.paginate(page: params[:page],per_page: 5)
   end
-
   def show
+    @comment = Comment.new
+    @comments = @recipe.comments.paginate(page: params[:page], per_page: 5)
       
   end
   def new
@@ -12,10 +15,10 @@ class RecipesController < ApplicationController
   end
   def create
       @recipe = Recipe.new(recipe_params)
-      @recipe.chef = Chef.first
+      @recipe = current_chef.recipes.build(recipe_params)
       if @recipe.save
-        flash[:success] = "Recipe was created successfully!"
-        redirect_to recipe_path(@recipe)
+        redirect_to @recipe
+        flash[:success] ="Recipe created successfully!"
       else
         render 'new'
       end
@@ -27,7 +30,7 @@ class RecipesController < ApplicationController
   def update
     
     if @recipe.update(recipe_params)
-      flash[:success] = "Recipe was updated successfully!"
+      flash[:success] = "Recipe  updated successfully!"
       redirect_to recipe_path(@recipe)
     else
       render 'edit'
@@ -44,7 +47,13 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
     def recipe_params
-      params.require(:recipe).permit(:name, :description)
+      params.require(:recipe).permit(:name, :description, ingredient_ids: [])
+    end
+    def require_same_user
+      if logged_in? & !current_chef.admin?
+        flash[:warning] = "Only admin users can perform that action"
+        redirect_to root_path
+      end
     end
   
 

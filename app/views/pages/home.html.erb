@@ -2,8 +2,12 @@
 <h1>Welcome to MyRecipes</h1>
 <h2>The best recipes sharing app!</h2>
 <br>
-<p><%= link_to "Sign up", signup_path, 
-                                  class: "btn btn-danger btn-lg btn-xlarge" %></p>
+<p><%= link_to "Signup", signup_path, class: "btn btn-danger" %> Or 
+<%= link_to 'Log in', login_path,class: "btn btn-danger" %>
+<%= link_to 'Log out', logout_path, method: :delete,class: "btn btn-danger" %>
+<%= link_to "All Ingredients", ingredients_path,class: "btn btn-danger" %>
+<%= link_to "New Ingredient", new_ingredient_path,class: "btn btn-danger" %></p>
+<p></p>
 </div>
 <br>
 <br>

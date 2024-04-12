@@ -80,3 +80,80 @@
   font-weight: bold;
   font-size: 1.25em;
 }
+/* Pagination links */
+.pagination {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a {
+  display: block;
+  padding: 5px 10px;
+  background-color:#fff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+}
+
+.pagination .disabled a {
+  color: #999;
+  pointer-events: none;
+}
+.input_checkbox input {
+  width: auto !important;
+  
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+.center-block {
+  float: none;
+}
+
+.chat-container {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 150px;
+  width: 80;
+}
+
+.message-container {
+  .form-control {
+    float: left;
+    width: 80%;
+  }
+  .btn {
+    float: right;
+    position: relative;
+    height: 54px !important;
+    width: 18%;
+  }
+}
+
+.message {
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.messages {
+  border: 1px solid #eaeaea;
+  height: 16em;
+  position: relative;
+  overflow: auto;
+}
+

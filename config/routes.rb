@@ -4,6 +4,20 @@ Rails.application.routes.draw do
   resources :recipes
   get'signup',to:'chefs#new'
   resources :chefs,except:[:new]
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout',to:'sessions#destroy'
+  resources :ingredients, except: [:destroy]
+  resources :recipes do
+    resources :comments, only: [:create]
+  end
+  get '/chat', to: 'chatrooms#show'
+  resources :messages, only: [:create]
+  # mount ActionCable.server => '/cable'
+  # get '/chat', to: 'chatrooms#show'
+  # resources :messages, only: [:create]
+
+
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

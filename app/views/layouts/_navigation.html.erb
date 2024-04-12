@@ -11,45 +11,72 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-    <!--  <a class="navbar-brand" href="#">Logo</a> -->
-      <%= link_to "MyRecipes",root_path,class:"navbar-brand",id:"logo" %>
+      <%= link_to "MyRecipes", root_path, class: "navbar-brand", id: "logo" %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-          <%= link_to "Home ", root_path, 
-
-          class: "btn btn-xs btn-dark" %>
-          </li>
-          
-          <li class="nav-item ">
-          <%= link_to "Create Recipe ", new_recipe_path, 
-
-          class: "btn btn-xs btn-dark" %>
+            <%= link_to "Home ", root_path, class: "btn btn-xs btn-dark" %>
           </li>
           <li class="nav-item">
-          <%= link_to "All Recipes ", recipes_path, 
-
-          class: "btn btn-xs btn-dark" %>
-          </li>
-          <li><%= link_to "Chefs", chefs_path ,class: "btn btn-xs btn-dark"%></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Followers</a>
+            <%= link_to "Create Recipe ", new_recipe_path, class: "btn btn-xs btn-dark" %>
           </li>
           <li class="nav-item">
-          
-
-
-          class: "btn btn-xs btn-dark" %>
+            <%= link_to "All Recipes ", recipes_path, class: "btn btn-xs btn-dark" %>
           </li>
           <li class="nav-item">
-            <form class="d-flex">
+            <%= link_to "Chefs", chefs_path, class: "btn btn-xs btn-dark" %>
+          </li>
+          <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "ChefChat", chat_path, class: "btn btn-xs btn-dark" %>
+          </li>
+          <% end %>
+          <li class="nav-item">
+            <form class="d-flex" style="margin-left: 20px;">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <!--<button class="btn btn-outline-light" type="submit">Search</button>-->
+              <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
           </li>
+
+          <% if logged_in? && (current_chef == current_chef.present? || current_chef.admin?) %>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Profile 
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "View your profile", chef_path(current_chef) %></li>
+                <li><%= link_to "Edit your profile", edit_chef_path(current_chef) %></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider">Testing</li>
+                <li><%= link_to "Log out", logout_path, method: :get %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Log in", login_path, class: "nav-link" %>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingredients <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "All Ingredients", ingredients_path %></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <% if logged_in? && current_chef.admin? %>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "New Ingredient", new_ingredient_path %></li>
+                <% end %>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            
+          <% end %>
         </ul>
       </div>
     </div>
