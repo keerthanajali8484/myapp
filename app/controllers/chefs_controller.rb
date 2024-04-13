@@ -25,6 +25,8 @@ class ChefsController < ApplicationController
     
     def show
       @chef_recipes = @chef.recipes.paginate(page: params[:page], per_page: 5)
+      @chef = Chef.find(params[:id])
+    @recipes = @chef.recipes
     end
     
     def edit

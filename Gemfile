@@ -6,6 +6,7 @@ ruby "3.3.0"
 gem "rails", "~> 7.1.3"
 gem "bootstrap"
 
+
 gem "sassc-rails"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

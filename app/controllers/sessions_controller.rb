@@ -2,10 +2,13 @@ class SessionsController < ApplicationController
   
     def new
     # will simply render the form
+    @recipes = Recipe.all
     end
   
     def create
         chef = Chef.find_by(email: params[:session][:email].downcase)
+        @recipes = Recipe.all # Or whatever logic you use to fetch recipes
+
         if chef && chef.authenticate(params[:session][:password])
           session[:chef_id] = chef.id
           cookies.signed[:chef_id] = chef.id
@@ -15,6 +18,7 @@ class SessionsController < ApplicationController
         flash[:alert] = "There was something wrong with your login information"
           render 'new'
         end
+        
       end
       
       def destroy
