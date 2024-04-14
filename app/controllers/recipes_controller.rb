@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update] 
-  before_action :require_user, except: [:index, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show, :edit, :destroy]
+  # before_action :require_same_user, only: [:edit, :update, :destroy]
   def index
    @recipes = Recipe.paginate(page: params[:page],per_page: 5)
     
@@ -57,7 +57,7 @@ class RecipesController < ApplicationController
     end
     def require_same_user
       if logged_in? & !current_chef.admin?
-        flash[:warning] = "Only admin users can perform that action"
+        flash[:notice] = "Only admin users can perform that action"
         redirect_to root_path
       end
     end

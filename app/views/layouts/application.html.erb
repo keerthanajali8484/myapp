@@ -13,7 +13,15 @@
 
   <body>
   <%= render 'layouts/navigation' %>
-  
+
+<% flash.each do |type, msg| %>
+  <div class="alert  <%= flash_class(type) %> style="display: none; padding: 10px; max-width: 300px;"">
+    <%= msg %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+  </div>
+<% end %>
+
   <div class="container">
     <%= yield %>
     </div>

@@ -1,7 +1,8 @@
 class ChefsController < ApplicationController
     before_action :set_chef, only: [:show, :edit, :update, :destroy]
-    before_action :require_same_user, only: [:edit, :update, :destroy]
-    before_action :require_admin, only: [:destroy]
+    before_action :require_same_user, only: [:edit, :update,]
+    
+    # before_action :require_admin, only: [:destroy]
     
     def index
       @chefs = Chef.paginate(page: params[:page], per_page: 5)
@@ -16,10 +17,12 @@ class ChefsController < ApplicationController
       if @chef.save
         session[:chef_id] = @chef.id
         cookies.signed[:chef_id] = @chef.id
-        flash[:success] = "Welcome #{@chef.chefname} to MyRecipes App!"
+        flash[:success] = "Welcome #{@chef.name} to Cookbook!"
         redirect_to chef_path(@chef)
       else
-        render 'new'
+        # render 'new'
+
+        render :new, status: :unprocessable_entity
       end
     end
     
@@ -42,17 +45,24 @@ class ChefsController < ApplicationController
     end
     
     def destroy
-      if !@chef.admin?
-        @chef.destroy
+       Chef.find(params[:id]).destroy
+        # @chef.destroy
         flash[:danger] = "Chef and all associated recipes have been deleted!"
-        redirect_to chefs_path
-      end
+        if !current_chef&.admin?
+          redirect_to logout_path
+        else
+          redirect_to chefs_path, status: 303
+        end
+
+        
+    
+      
     end
     
     private
     
     def chef_params
-      params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)
+      params.require(:chef).permit(:name, :email, :password, :password_confirmation)
     end
     
     def set_chef

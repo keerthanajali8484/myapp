@@ -20,9 +20,11 @@
         <li class="nav-item">
           <%= link_to "Home ", root_path, class: "btn btn-xs btn-dark" %>
         </li>
+        <% if logged_in? %>
         <li class="nav-item">
           <%= link_to "Create Recipe ", new_recipe_path, class: "btn btn-xs btn-dark" %>
         </li>
+        <% end %>
         <li class="nav-item">
           <%= link_to "All Recipes ", recipes_path, class: "btn btn-xs btn-dark" %>
         </li>
@@ -45,7 +47,7 @@
           <%= link_to "ChefChat", chat_path, class: "btn btn-xs btn-dark" %>
         </li>
         <% end %>
-        <% if logged_in? && (current_chef == current_chef.present? || current_chef.admin?) %>
+        <% if logged_in? %>
         <div class="dropdown "data-bs-theme="dark">
            <button class="btn btn-xs btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
@@ -53,7 +55,8 @@
             <ul class="dropdown-menu " aria-labelledby="dropdownMenu2">
                 <li style="text-align: center;"><%= link_to "View profile", chef_path(current_chef) %></li><br>
                 <li style="text-align: center;"><%= link_to "Edit profile", edit_chef_path(current_chef) %></li><br>
-                <li style="text-align: center;"><%= link_to "Log out", logout_path, method: :get %></li>
+                <li style="text-align: center;"><%= link_to "Log out", logout_path, method: :get %></li><br>
+                <li style="text-align: center;"><%= button_to "Delete", chef_path(current_chef), method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
             </ul>
           </div>
         <% else %>
@@ -62,21 +65,12 @@
         </li>
         <% end %>
        
-        <!--<li class="nav-item">
-          <form class="d-flex" style="margin-left: 20px;">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
-          </form>
-        </li>-->
-        <form class="d-flex" style="margin-left: 20px;">
+        
         <%= form_tag(recipes_path, method: :get) do %>
-          <input class="form-control me-2"  <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %> </input>
+          <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %>
           <%= submit_tag "Search" %>
         <% end %>
-        <% @recipes.each do |recipe| %>
-          
-        <% end %>
-        </form>
+        
       </ul>
     </div>
   </div>
