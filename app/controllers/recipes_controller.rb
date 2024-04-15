@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
     
     @recipes = Recipe.where("name LIKE ?", "%#{params[:search]}%").paginate(page: params[:page], per_page: 10)
 
+
   end
   def show
     @comment = Comment.new
@@ -53,7 +54,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
     def recipe_params
-      params.require(:recipe).permit(:name, :description, ingredient_ids: [])
+      params.require(:recipe).permit(:name, :description, :ingredient_id)
     end
     def require_same_user
       if logged_in? & !current_chef.admin?

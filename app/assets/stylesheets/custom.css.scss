@@ -26,10 +26,41 @@
 }
 .card {
     // border: none !important;
+
     outline-color:black;
     background-color: #f0f0f0; /* Set the background color for the card */
   border-radius: 10px; /* Optional: Add rounded corners to the card */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card1 {
+    // background-image:asset-url('chefpattern.jpg');
+    color:rgb(207, 2, 43);
+    outline-color:black;
+    background-color:white; /* Set the background color for the card */
+  border-radius: 10px; /* Optional: Add rounded corners to the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card2 {
+    // background-image:asset-url('recipepattern.jpg');
+    height: 100px;
+    color:rgb(207, 2, 43);
+
+    outline-color:black;
+    background-color:white; /* Set the background color for the card */
+  border-radius: 10px; /* Optional: Add rounded corners to the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card3 {
+    // background-image:asset-url('ingredientspattern.jpg');
+    outline-color:black;
+    color:rgb(207, 2, 43);
+
+    background-color:white; /* Set the background color for the card */
+  border-radius: 10px; /* Optional: Add rounded corners to the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .card-text{
+    color:black;
   }
   .description {
     margin-top: 0;
@@ -55,7 +86,7 @@
   
   .time {
     display: flex;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   }
   .chef_info{
     margin-top:10px ;
@@ -91,7 +122,7 @@
 }
 
 .chef-title {
-  color: #073B15;
+  color:black;
   font-weight: bold;
   font-size: 1.25em;
 }
@@ -182,7 +213,7 @@
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px black;
   z-index: 9999;
 }
 
@@ -198,7 +229,73 @@
 }
 
 .close-button:hover {
-  color: #333;
+  color:black;
 }
+*{
+  margin: 0;
+  padding: 0;
+}
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: black;
+}
+
+
 
 

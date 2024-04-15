@@ -3,37 +3,51 @@
 <h2>The best recipes sharing app!</h2>
 <br>
 <p><%= link_to "Signup", signup_path, class: "btn btn-danger" %> </p>
+
 </div>
 <br>
 <br>
+
 <footer>
 <div class="row">
   <div class="col-sm-4">
-    <div class="card">
+    <div class="card1"style="height: 25rem;">
       <div class="card-body ">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger">Go somewhere</a>
+      <br>
+        <h3 class="card-title">Chefs</h3>
+        <br>
+        <p class="card-text">At COOKBOOK, we celebrate the artistry and passion of chefs from around the globe.
+        Whether you're a seasoned professional or an aspiring culinary enthusiast, our platform offers a unique space to connect, learn, and thrive</p>
+        <br><br><br>
+        <%= link_to "Chefs", chefs_path, class: "btn  btn-dark centered" %>
+
       </div>
     </div>
   </div>
-  
+
   <div class="col-sm-4">
-    <div class="card">
+    <div class="card2"style="height: 25rem;">
       <div class="card-body">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger" >Go somewhere</a>
+      <br>
+        <h3 class="card-title">Recipes</h3>
+        <br>
+        <p class="card-text">Connect with fellow food lovers, share your favorite recipes, and exchange cooking tips and tricks in our vibrant community forum.<br>
+         Whether you're looking for advice on perfecting your pie crust or seeking recommendations for a dinner menu, our community is here to support and inspire you on your culinary journey.</p>
+        <br>
+          <%= link_to "Recipes ", recipes_path, class: "btn  btn-dark centered" %>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card">
+    <div class="card3"style="height: 25rem;">
       <div class="card-body">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-danger" >Go somewhere</a>
-      </div>
+      <br>
+        <h3 class="card-title">Ingredients</h3>
+        <br>
+        <p class="card-text">Experience the difference that quality ingredients can make in your cooking.<br>
+         Join COOKBOOK today and discover a world of flavor, freshness, and culinary excellence at your fingertips.</p> <br><br><br><br>
+        <%= link_to "All Ingredients", ingredients_path, class: "btn  btn-dark centered" %></li>
+        </div>
     </div>
   </div>
 </div>

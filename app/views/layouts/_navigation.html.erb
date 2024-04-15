@@ -56,20 +56,23 @@
                 <li style="text-align: center;"><%= link_to "View profile", chef_path(current_chef) %></li><br>
                 <li style="text-align: center;"><%= link_to "Edit profile", edit_chef_path(current_chef) %></li><br>
                 <li style="text-align: center;"><%= link_to "Log out", logout_path, method: :get %></li><br>
-                <li style="text-align: center;"><%= button_to "Delete", chef_path(current_chef), method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>
+                <li style="text-align: center;"><%= link_to "Delete Account", chef_path(current_chef), method: :delete %></li>
+
+             <!--   <li style="text-align: center;"><%= button_to "Delete", chef_path(current_chef), method: :delete, data: { confirm: "Are you sure you want to delete?" } %></li>-->
             </ul>
           </div>
         <% else %>
         <li class="nav-item">
-          <%= link_to "Log in", login_path, class: "nav-link" %>
+          <%= link_to "Log in", login_path, class: "btn btn-xs btn-dark" %>
         </li>
         <% end %>
        
         
-        <%= form_tag(recipes_path, method: :get) do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search recipes" %>
-          <%= submit_tag "Search" %>
-        <% end %>
+        <form action="/recipes" method="get" class="search-form">
+    <input type="text" name="search" value="<%= params[:search] %>" placeholder="Search recipes" class="search-input">
+    <button type="submit" class="search-button">Search</button>
+</form>
+
         
       </ul>
     </div>

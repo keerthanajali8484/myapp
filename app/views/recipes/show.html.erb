@@ -7,10 +7,8 @@
       </p>
     <br>
     
-    <% if @recipe.ingredients.any? %>
     <h5><strong>Ingredients:</strong></h5>
-    <%= render @recipe.ingredients %></p>
-  <% end %>
+    <%= render @recipe.ingredient %></p>
   <br>
   <hr>
   <div class="pull-right">
@@ -21,27 +19,28 @@
    <p>
       <%= link_to gravatar_for(@recipe.chef), recipes_path %>
     </p>
-    <small><%= @recipe.chef.name.capitalize %></small>
+    <strong><%= @recipe.chef.name.capitalize %></strong>
     <div class="time">
       <small><%= time_ago_in_words(@recipe.created_at) %> ago<small>
     </div>
     <br>
     <div class="row">
+    <% if logged_in? && (current_chef == @recipe.chef || current_chef.admin?) %>
+
     <div class="col-md-4 recipe-actions">
        <%= link_to "Edit recipe", edit_recipe_path(@recipe),class: 'btn btn-secondary' %>
     </div>
-    
+    <% end %>
        
         <div class="col-md-4 recipe-actions"> 
-        <%= link_to "Return to recipes ", recipes_path, 
-
-        class: "btn btn-xs btn-dark" %>
+        <%= link_to "Return to recipes ", recipes_path, class: "btn btn-xs btn-dark" %>
           </div>
+          <% if logged_in? && (current_chef == @recipe.chef || current_chef.admin?) %>
           <div class="col-md-4 recipe-actions">
         <%= button_to "Delete recipe", recipe_path(@recipe), method: :delete,data: { confirm: "Are you sure you want to delete?" },class: "btn  btn-danger" %>
         
         </div>
-       
+       <% end %>
         </div>
         <% if logged_in? %>
   <div class="row">
@@ -59,16 +58,26 @@
             <%= f.text_area :description, rows: 8, class: "form-control", 
                                       placeholder: "Enter Comment Here" %>
             
-          </div>
-          <br>
-          <h4><strong>Rating </strong></h4>
-          <div class="col-md-12 comment-description">
-            <%= f.text_area :rating, rows: 1, class: "form-control", 
-                                      placeholder: "Enter rating 1 to 5" %>
-          </div>
+          </br>
+          <h4><strong>Rate </strong></h4>
+
+          <div class="rate">
+  <%= f.radio_button :rating, 5, id: "star5" %>
+  <%= label_tag "star5", "5 stars", title: "text" %>
+  <%= f.radio_button :rating, 4, id: "star4" %>
+  <%= label_tag "star4", "4 stars", title: "text" %>
+  <%= f.radio_button :rating, 3, id: "star3" %>
+  <%= label_tag "star3", "3 stars", title: "text" %>
+  <%= f.radio_button :rating, 2, id: "star2" %>
+  <%= label_tag "star2", "2 stars", title: "text" %>
+  <%= f.radio_button :rating, 1, id: "star1" %>
+  <%= label_tag "star1", "1 star", title: "text" %>
+</div>
+</div>
+
           
         </div>
-        <br>
+        <br><br>
         <div class="form-group">
           <div class="col-md-offset-2 col-md-10 centered"style="margin: 0 auto; width: 20%;">
             <%= f.submit "Submit",class: "btn btn-danger" %>

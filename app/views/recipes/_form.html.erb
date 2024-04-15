@@ -26,15 +26,24 @@
         </div>
         <br>
       </div>
-      <div class="form-group">
+     <!-- <div class="form-group">
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
-      <%= f.collection_check_boxes :ingredient_ids,Ingredient.all, :id, :name do |cb| %>
+      <%= f.collection_check_boxes :ingredient_id,Ingredient.all, :id, :name do |cb| %>
 <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
       <% end %>
     </div>
   </div>
+</div> -->
+<div class="form-group">
+  <div class="row">
+  <strong> Select Main Ingredient </strong><br><br>
+    <div class="col-md-offset-2 col-md-8">
+      <%= f.collection_select :ingredient_id, Ingredient.all, :id, :name%>
+    </div>
+  </div>
 </div>
+
 <br>
       <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
