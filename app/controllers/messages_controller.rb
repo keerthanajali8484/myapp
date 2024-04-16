@@ -5,10 +5,13 @@ class MessagesController < ApplicationController
     @message.chef = current_chef
     if @message.save
       redirect_to chat_path
-    else
+    elsif @message.content != ""
       ActionCable.server.broadcast 'chatroom_channel', 
       message: render_message(@message), 
                 chef: @message.chef.name
+    else
+      flash[:warning] = "Message is empty"
+      redirect_to chat_path
     end
       
     end

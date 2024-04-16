@@ -4,8 +4,10 @@
     <strong><%= message.chef.name.capitalize %></strong>
     <span class="content">
       <%= message.content %></br>
+      <% if message.content != "" %>
       <small><em>Created <%= time_ago_in_words(message.created_at) %> 
                                                   ago</em></small>
+       <% end %>   
     </span>
   </p>
 </div>
